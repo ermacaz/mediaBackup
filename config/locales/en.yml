@@ -30,4 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    documents:
+      file_required: "file attachment is required"
+      content_type: "attachment must be image or pdfs"
