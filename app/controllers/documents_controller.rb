@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :authenticate_user, only: %i[create]
+  # before_action :authenticate_user, only: %i[create]
 
   def create
     @document = Document.new(document_params)
