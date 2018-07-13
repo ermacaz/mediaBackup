@@ -1,8 +1,9 @@
-server 'mediabackup.ermacaz.com', port: 5029, roles: [:web, :app, :db], primary: true
+load 'config/deploy_vars.rb'
+server $HOST, port: $PORT, roles: [:web, :app, :db], primary: true
 # Change these
 set :repo_url,        'git@github.com:ermacaz/mediaBackup.git'
 set :application,     'mediaBackup'
-set :user,            'deploy'
+set :user,            $CAP_USER
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
@@ -12,7 +13,7 @@ set :use_sudo,        true
 set :stage,           :production
 set :deploy_via,      :remote_cache
 # set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :deploy_to,       "/var/www/mediabackup.ermacaz.com"
+set :deploy_to,       $WORKING_DIR
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
