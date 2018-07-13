@@ -1,6 +1,6 @@
 class Document < ApplicationRecord
   has_one_attached :doc
-  belongs_to :documentable, polymorphic: true, optional: true
+  belongs_to :user
   attr_accessor :doc_contents
   attr_accessor :doc_name
 
