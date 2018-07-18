@@ -1,8 +1,9 @@
 class DocumentsController < ApplicationController
-  # before_action :authenticate_user, only: %i[create]
+  before_action :authenticate_user, only: %i[create]
 
   def create
-    @document = Document.new(document_params)
+    
+    @document = @curr_user.documents.new(document_params)
     if @document.save
       return success_document_save
     else
@@ -23,6 +24,6 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.permit(:doc_contents, :doc_name)
+    params.require(:document).permit(:doc_contents, :doc_name)
   end
 end

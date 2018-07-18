@@ -6,12 +6,14 @@ class LoginsController < ApplicationController
       user.save!
       render json: {
         response: 'SUCCESS',
-        data: {
-          api_key: user.api_key
-        }
+        message: "",
+        api_key: user.api_key
       }
     else
-      render json: { error: 'Invalid username/password combination' }, status: :unauthorized
+      render json: {
+        response: 'ERROR',
+        message: "Invalid username/password combination",
+      }, status: :unauthorized
     end
   end
 end

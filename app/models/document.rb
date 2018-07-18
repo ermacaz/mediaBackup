@@ -7,7 +7,8 @@ class Document < ApplicationRecord
   after_create :parse_doc
   validate :doc_validations, on: :create
 
-
+  # ActiveStorage::Blob.service.send(:path_for, Document.last.doc.blob.key)
+  # 
   def parse_doc
     # If directly uploaded
     unless self.doc_contents.nil? || self.doc_contents[/(image\/[a-z]{3,4})|(application\/[a-z]{3,4})/] == ''
